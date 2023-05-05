@@ -118,16 +118,14 @@ form.addEventListener('submit', async (event) => {
       }
     });
   }
-  if (response !== null && response.ok) {
+
     const data = await response.json();
     console.log(data);
     // Update the DOM with the recipe response
     localStorage.setItem('recipe', data.recipe);
 
     window.location.href = "/recipe";
-  } else {
-    console.error('Error fetching data');
-  }
+  
 });
 
 </script>
