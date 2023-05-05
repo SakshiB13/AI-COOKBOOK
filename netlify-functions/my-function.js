@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body);
     const promptText = body.prompt;
-
+    console.log(promptText);
     if (!promptText) {
       throw new Error("Uh oh, no prompt was provided");
     }
@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     });
 
     const recipe = response.data.choices[0].text;
-
+     console.log(recipe);
     return {
       statusCode: 200,
       body: JSON.stringify({ recipe }),
