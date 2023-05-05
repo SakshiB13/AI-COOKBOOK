@@ -47,7 +47,7 @@ app.post("/recipegenerator", async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-  res.sendFile(__dirname + '/recipe.html');
+  res.redirect("/recipe");
 });
 
 app.get('/', (req, res)=>{
