@@ -67,6 +67,7 @@
               <button type="submit" id="submitr" disabled> Submit</button>
             </div>
             <script>
+              
               const radioButtons = document.querySelectorAll('input[type="radio"]');
               const textInputi = document.getElementById('text-inputi');
               const textInputr = document.getElementById('text-inputr');
@@ -89,6 +90,22 @@
                     }
                   });
               });
+              <script>
+  const form = document.getElementById('recipe-form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const promptTexti = document.getElementById('text-inputi').value;
+    const promptTextr = document.getElementById('text-inputr').value;
+    const response = await fetch('/.netlify/functions/recipegenerator', {
+      method: 'POST',
+      body: JSON.stringify({ prompt: promptTexti} ,{ prompt: prompTextr}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    window.location.href = "/recipe";
+  });
+</script>
       
             </script>
           </div>
