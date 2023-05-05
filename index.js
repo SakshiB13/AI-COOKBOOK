@@ -25,7 +25,6 @@ const openai = new OpenAIApi(configuration);
 
 
 app.post("/recipegenerator", async (req, res) => {
-  res.sendFile(__dirname + '/RecipeGenerator.html');
   promptText = req.body.prompt;
   console.log(promptText);
   try {
