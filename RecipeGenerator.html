@@ -118,10 +118,10 @@ form.addEventListener('submit', async (event) => {
 
   if (response !== null && response.ok) {
     const data = await response.json();
-
+    console.log(data);
     // Update the DOM with the recipe response
     const recipeContainer = document.getElementById("recipes");
-    recipeContainer.innerHTML = data.recipe;
+    recipeContainer.innerHTML = data;
 
     window.location.href = "/recipe";
   } else {
