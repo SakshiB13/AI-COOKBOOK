@@ -118,7 +118,7 @@ form.addEventListener('submit', async (event) => {
       }
     });
   }
-
+delay(200);
   if (response !== null && response.ok) {
     const data = await response.json();
     console.log(data);
