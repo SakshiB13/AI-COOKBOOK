@@ -99,6 +99,7 @@ form.addEventListener('submit', async (event) => {
   const promptTextr = document.getElementById('text-inputr').value;
   let response = null;
   if(promptTexti){
+    localStorage.setItem('prompt', promptTexti);
     response = await fetch('/.netlify/functions/my-function', {
       method: 'POST',
       body: JSON.stringify({ prompt: promptTexti }),
@@ -106,7 +107,9 @@ form.addEventListener('submit', async (event) => {
         'Content-Type': 'application/json'
       }
     });
-  } else if(promptTextr){
+  } 
+  if(promptTextr){
+    localStorage.setItem('prompt', propmtTextr);
     response = await fetch('/.netlify/functions/my-function', {
       method: 'POST',
       body: JSON.stringify({ prompt: promptTextr }),
