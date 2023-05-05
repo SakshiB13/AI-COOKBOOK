@@ -92,26 +92,31 @@
               });
               
               
-  const form = document.getElementById('recipe-form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const promptTexti = document.getElementById('text-inputi').value;
-    const promptTextr = document.getElementById('text-inputr').value;
-    const response = '';
-    if(promptTexti){response = await fetch('/.netlify/functions/my-function', {
+ const form = document.getElementById('recipe-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const promptTexti = document.getElementById('text-inputi').value;
+  const promptTextr = document.getElementById('text-inputr').value;
+  let response = null;
+  if(promptTexti){
+    response = await fetch('/.netlify/functions/my-function', {
       method: 'POST',
-      body: JSON.stringify({ prompt: promptTexti}),
+      body: JSON.stringify({ prompt: promptTexti }),
       headers: {
         'Content-Type': 'application/json'
       }
-    });}
-    if(promptTextr){response = await fetch('/.netlify/functions/my-function', {
+    });
+  } else if(promptTextr){
+    response = await fetch('/.netlify/functions/my-function', {
       method: 'POST',
-      body: JSON.stringify({ prompt: promptTextr}),
+      body: JSON.stringify({ prompt: promptTextr }),
       headers: {
         'Content-Type': 'application/json'
       }
-    });}
+    });
+  }
+
+  if (response !== null && response.ok) {
     const data = await response.json();
 
     // Update the DOM with the recipe response
@@ -119,7 +124,11 @@
     recipeContainer.innerHTML = data.recipe;
 
     window.location.href = "/recipe";
-  });
+  } else {
+    console.error('Error fetching data');
+  }
+});
+
 </script>
        </div>
         </div>
