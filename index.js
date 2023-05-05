@@ -51,7 +51,7 @@ app.post("/recipegenerator", async (req, res) => {
 });
 
 app.get('/', (req, res)=>{
-  res.sendFile(__dirname + '/public/src/home.html');  
+  res.sendFile(__dirname + '/index.html');  
 });
 
 app.post('/', (req, res)=>{
@@ -59,19 +59,19 @@ app.post('/', (req, res)=>{
 });
 
 app.get('/recipegenerator', (req, res)=>{
-  res.sendFile(__dirname + '/public/src/RecipeGenerator.html');  
+  res.sendFile(__dirname + '/RecipeGenerator.html');  
 });
 
 /* app.get('/recipe', (req, res)=>{
   const promptText = req.promptText;
   const recipe = req.recipe;
-  res.sendFile(__dirname + '/public/src/recipe.html',{ prompt: promptText, recipes: recipe });
+  res.sendFile(__dirname + '/recipe.html',{ prompt: promptText, recipes: recipe });
   //res.render('recipe', );  
 });
  */
 app.get('/recipe', (req, res)=>{
  
-  const filePath = __dirname + '/public/src/recipe.html';
+  const filePath = __dirname + '/recipe.html';
   const options = {
     headers: {
       'Content-Type': 'text/html'
@@ -134,7 +134,7 @@ app.get('/recipe', (req, res)=>{
 
 
 app.get('/aboutus', (req, res)=>{
-  res.sendFile(__dirname + '/public/src/aboutus.html');  
+  res.sendFile(__dirname + '/aboutus.html');  
 });
 
 
