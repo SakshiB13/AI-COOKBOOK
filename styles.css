@@ -322,7 +322,7 @@ input[type="radio"]:hover:not(:checked) {
         justify-content: center;;
         width: 100%;
         height: 673px;
-        background: url("/css/recipe\ generator.png");
+        background: url("/public/css/recipe\ generator.png");
   
   }
   .getstarted
