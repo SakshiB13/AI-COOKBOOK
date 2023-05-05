@@ -62,13 +62,11 @@ app.get('/recipegenerator', (req, res)=>{
   res.sendFile(__dirname + '/RecipeGenerator.html');  
 });
 
-/* app.get('/recipe', (req, res)=>{
-  const promptText = req.promptText;
-  const recipe = req.recipe;
-  res.sendFile(__dirname + '/recipe.html',{ prompt: promptText, recipes: recipe });
+app.get('/recipe', (req, res)=>{
+  res.sendFile(__dirname + '/recipe.html');
   //res.render('recipe', );  
 });
- */
+ 
 /*app.get('/recipe', (req, res)=>{
  
   const filePath = __dirname + '/recipe.html';
