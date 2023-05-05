@@ -27,6 +27,7 @@ exports.handler = async (event, context) => {
     const recipe = response.data.choices[0].text;
      console.log(recipe);
     return {
+      recipe,
       statusCode: 200,
       body: JSON.stringify({ recipe }),
     };
