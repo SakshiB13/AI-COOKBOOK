@@ -1,4 +1,6 @@
 [build]
-  functions = "netlify-functions"
-  timeout = 600
-  
+  functions = "functions/"
+
+[[functions]]
+  name = "my-function"
+  timeout = 1000
