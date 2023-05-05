@@ -109,6 +109,12 @@
         'Content-Type': 'application/json'
       }
     });}
+    const data = await response.json();
+
+    // Update the DOM with the recipe response
+    const recipeContainer = document.getElementById("recipes");
+    recipeContainer.innerHTML = data.recipe;
+
     window.location.href = "/recipe";
   });
 </script>
