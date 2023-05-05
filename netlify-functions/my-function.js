@@ -1,29 +1,19 @@
-const express = require('express')
-const app = express()
-
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended:true}));
-
-require("dotenv").config();
-
-
 const { Configuration, OpenAIApi } = require("openai");
 
-
 const configuration = new Configuration({
-  apiKey:process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-
-app.post("/recipegenerator", async (req, res) => {
-  promptText = req.body.prompt;
-  console.log(promptText);
+exports.handler = async (event, context) => {
   try {
-    if (promptText == null) {
+    const body = JSON.parse(event.body);
+    const promptText = body.prompt;
+
+    if (!promptText) {
       throw new Error("Uh oh, no prompt was provided");
     }
-  
+
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: "Write a recipe based on these ingredients and instructions:" + promptText,
@@ -33,15 +23,18 @@ app.post("/recipegenerator", async (req, res) => {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
-    const completion=response.data.choices[0].text;
-    recipe=completion;
-   console.log(recipe);
+
+    const recipe = response.data.choices[0].text;
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ recipe }),
+    };
   } catch (error) {
     console.log(error.message);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "Something went wrong" }),
+    };
   }
-  res.redirect("/recipe");
-});
-
-module.exports.handler = async (event, context) => {
-  return await app(event, context)
-}
+};
