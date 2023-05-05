@@ -87,7 +87,7 @@ app.get('/recipe', (req, res)=>{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <title>AI CookBook</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <nav class="navbar navbar-expand-lg bg-light">
       <a class="navbar-brand" href="/">  <i class="fa-solid fa-bowl-rice"></i> AI CookBook</a>
      
