@@ -92,40 +92,43 @@
               });
               
               
- const form = document.getElementById('recipe-form');
-form.addEventListener('submit', async (event) => {
+ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const promptTexti = document.getElementById('text-inputi').value;
   const promptTextr = document.getElementById('text-inputr').value;
-  let response = null;
-  if(promptTexti!=null){
-    localStorage.setItem('prompt', promptTexti);
-    response = await fetch('/.netlify/functions/my-function', {
-      method: 'POST',
-      body: JSON.stringify({ prompt: promptTexti }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  } 
-  if(promptTextr!=null){
-    localStorage.setItem('prompt', promptTextr);
-    response = await fetch('/.netlify/functions/my-function', {
-      method: 'POST',
-      body: JSON.stringify({ prompt: promptTextr }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  }
-if(response!=null){
-    const data = await response.json();
-    console.log(data);
-    // Update the DOM with the recipe response
+
+  let data = null;
+
+  try {
+    if(promptTexti) {
+      const response = await fetch('/.netlify/functions/my-function', {
+        method: 'POST',
+        body: JSON.stringify({ prompt: promptTexti }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      data = await response.json();
+    } 
+    if(promptTextr) {
+      const response = await fetch('/.netlify/functions/my-function', {
+        method: 'POST',
+        body: JSON.stringify({ prompt: promptTextr }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      data = await response.json();
+    }
+
     localStorage.setItem('recipe', data.recipe);
+    localStorage.setItem('prompt', promptTexti || promptTextr);
 
     window.location.href = "/recipe";
-}
+  } catch (error) {
+    console.error(error);
+    console.error('Error fetching data');
+  }
 });
 
 </script>
